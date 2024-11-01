@@ -17,6 +17,7 @@ FROM build AS publish
 RUN dotnet publish "HueLightDJ.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
+LABEL org.opencontainers.image.source=https://github.com/q42/HueLightDJ
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "HueLightDJ.Web.dll"]
